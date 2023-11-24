@@ -152,7 +152,7 @@ function custom_announcement_page() {
             <div class="custom-section">
                 <h3>额外说明</h3>
                 <p>Web颜色参考：<a href="https://www.jingxialai.com/webcolors.html" target="_blank">Webcolors</a></p>
-                <img src="https://ypwenjian.jingxialai.com/jingxialai/2023/11/20231124083449222.jpg" height="150" width="300" >
+                <img src="https://ypwenjian.jingxialai.com/jingxialai/2023/11/20231124083449222.jpg" height="150" width="300" />
             </div>
         </div>
     </div>
@@ -163,7 +163,7 @@ function custom_announcement_page() {
         }
 
         .settings-form {
-            width: 55%; 
+            width: 60%; 
         }
 
         .custom-section {
