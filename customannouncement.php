@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Easy Custom Announcement
+Plugin Name: WPSC Announcement
 Plugin URI: https://www.jingxialai.com/4205.html
 Description: 一个自定义公告插件，可以在后台设置公告内容和显示位置。（新增分类文章）
 Version: 3.0
