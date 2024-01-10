@@ -2,7 +2,7 @@
 /*
 Plugin Name: WPSC Announcement
 Plugin URI: https://www.jingxialai.com/4205.html
-Description: 一个自定义公告插件，可以在后台设置公告内容和显示位置。（新增分类文章）
+Description: 一个自定义公告插件，可以在后台设置公告内容和显示位置。
 Version: 3.0
 Author: Summer
 License: GPL License
@@ -17,9 +17,18 @@ function custom_announcement_menu() {
         'custom-announcement',
         'custom_announcement_page'
     );
+    // 设置入口
+    add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'WPSC_Announcement_settings_link');
 }
 
 add_action('admin_menu', 'custom_announcement_menu');
+
+// 设置链接回调函数
+function WPSC_Announcement_settings_link($links) {
+    $settings_link = '<a href="admin.php?page=custom-announcement">设置</a>';
+    array_unshift($links, $settings_link);
+    return $links;
+}
 
 // 插件设置页面
 function custom_announcement_page() {
@@ -147,23 +156,30 @@ function custom_announcement_page() {
         <font color="#FF3300">2、当前选择的分类文章和全站所有文章不要同时选上.</font><br>
             <font color="#0000CC">3、如果显示位置选择了全站所有页面，就不用勾选下面的2个框了.</font><br>
         4、支持html格式，如果里面有图片自行限制下图片尺寸.<p>
-            问题反馈邮箱：me@jingxialai.com
                     </form>
             <div class="custom-section">
                 <h3>额外说明</h3>
                 <p>Web颜色参考：<a href="https://www.jingxialai.com/webcolors.html" target="_blank">Webcolors</a></p>
-                <img src="https://ypwenjian.jingxialai.com/jingxialai/2023/11/20231124083449222.jpg" height="150" width="300" />
+                插件QQ群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=dgfThTp7nW4_hoRc1wjaGWEKlNmemlqB&jump_from=webapi&authKey=kwUfvush+fV1G/4Mvr5cva6EnWnQPave2J61QzmfTmUEk+OdGg6c9H1tPaHQYjLJ"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Wordpress运营技术瞎折腾" title="Wordpress运营技术瞎折腾"></a>
             </div>
         </div>
     </div>
         <style>
+        .wrap {
+                max-width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+            }
         .settings-container {
             display: flex;
             justify-content: space-between;
         }
 
         .settings-form {
-            width: 60%; 
+            width: 55%; 
         }
 
         .custom-section {
@@ -230,50 +246,46 @@ function display_custom_announcement() {
         document.getElementById('custom-announcement-popup').style.display = 'none';
     }
 </script>
+<style>
+            .custom-announcement-popup {
+                display: block; 
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80%;
+                max-width: 600px;
+                background-color: #fff;
+                padding: 20px;
+                border: 2px solid <?php echo esc_attr($popup_border_color); ?>;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
 
-            <style>
-    .custom-announcement-popup {
-        display: block; 
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        max-width: 600px;
-        background-color: #fff;
-        padding: 20px;
-        border: 2px solid <?php echo esc_attr($popup_border_color); ?>;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-    }
-
-                .custom-announcement-popup-content {
-                    text-align: center;
-                }
-
-                .custom-announcement-popup-text {
-                    font-size: 16px;
-                    line-height: 1.6;
-                }
-
-                .custom-announcement-popup-close {
-                    background-color: #4CAF50;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 16px;
-                    margin-top: 10px;
-                    cursor: pointer;
-                    border-radius: 5px;
-                }
-
-                .custom-announcement-popup-close:hover {
-                    background-color: #45a049;
-                }
-            </style>
+            .custom-announcement-popup-content {
+                text-align: center;
+            }
+            .custom-announcement-popup-text {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            .custom-announcement-popup-close {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            .custom-announcement-popup-close:hover {
+                background-color: #45a049;
+            }
+        </style>
             <?php
         }
     }
