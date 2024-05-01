@@ -1,17 +1,21 @@
 <?php
 /*
-Plugin Name: WPSC Announcement
+Plugin Name: WPSC自定义公告
 Plugin URI: https://www.jingxialai.com/4205.html
-Description: 一个自定义公告插件，可以在后台设置公告内容和显示位置。
-Version: 3.0
+Description: 一个自定义公告插件，可以在后台设置公告内容和指定显示位置。
+Version: 3.1
 Author: Summer
+Author URI: https://www.jingxialai.com/
 License: GPL License
 */
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 // 添加菜单到后台
 function custom_announcement_menu() {
     add_menu_page(
-        'Custom Announcement',
+        '自定义公告设置',
         '公告设置',
         'manage_options',
         'custom-announcement',
@@ -32,6 +36,11 @@ function WPSC_Announcement_settings_link($links) {
 
 // 插件设置页面
 function custom_announcement_page() {
+    if (!current_user_can('manage_options')) {
+        wp_die('您无权限访问这个页面');
+    }
+
+
     if (isset($_POST['custom_announcement_submit'])) {
         $announcement_text = wp_kses_post($_POST['announcement_text']);
         $announcement_position = sanitize_text_field($_POST['announcement_position']);
@@ -166,8 +175,8 @@ function custom_announcement_page() {
     </div>
         <style>
         .wrap {
-                max-width: 95%;
-                margin: 20px auto;
+                max-width: 98%;
+                margin: 10px auto;
                 padding: 20px;
                 background-color: #fff;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
