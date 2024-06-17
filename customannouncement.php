@@ -107,7 +107,7 @@ function custom_announcement_page() {
         <div class="settings-container">
         <form method="post" action="">
             <label for="announcement_text">公告内容：</label>
-            <textarea name="announcement_text" rows="5" cols="50"><?php echo esc_textarea($announcement_text); ?></textarea>
+            <textarea name="announcement_text" rows="5" cols="100"><?php echo esc_textarea($announcement_text); ?></textarea>
             <br>
             <label for="announcement_position">显示位置：</label>
             <select name="announcement_position">
